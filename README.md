@@ -2,3 +2,26 @@
 A simple Web-Based Player with javascript and html. No PHP is required. 
 
 **WATCH AN DEMO HERE: [DEMO](https://janikfrb.github.io/radioplayer-for-you/)**
+
+## Newest versions:
+---
+
+V0.0.2
+
+[:x:] version released
+
+[:x:] version finished
+
+[:x:] version in progress
+
+
+---
+V0.0.1
+
+[:white_check_mark:] standart functions
+
+[:white_check_mark:] Full support
+
+[:x:] Mobile optimized (Planned for V0.0.2!)
+
+---
