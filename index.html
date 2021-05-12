@@ -1,0 +1,310 @@
+<!-- This is the main Page for PC only! There is an Mobile-Optimised Version -->
+<!-- VERSION-INFO: V.0.01 BETA -->
+<!DOCTYPE html>
+<head>
+<style>
+
+.bg{
+  background: black;
+  height:20px; 
+  
+}
+@keyframes pg{
+ 0% {
+    	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+    }
+}
+.pg{
+  background:linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  width:0%;
+  height:20px;
+}
+.btn{
+  background:white;
+  width:auto;
+  height:auto;
+  border:0px solid black;
+}
+.play{
+  background-image:url('https://img.icons8.com/carbon-copy/100/000000/play-button-circled.png');
+}
+.pause{
+  background-image:url('https://img.icons8.com/dotty/80/000000/circled-pause.png');
+}
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height:auto;
+    background-color: green;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+}
+.footer1{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height:100%;
+    background-color: blue;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+}
+@keyframes lt{
+0%{width:100%;height:100%;}
+50%{width:100%;height:40%;}
+70%{width:100%;height:80%;}
+100%{visibility:hidden;width:100%;height:0%;}
+}
+.sng{
+  color:skyblue;
+  animation:sn 25s infinite;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height:100%;
+}
+.ds{
+  width:100%;
+  height:10%;
+  text-align:center;
+  
+}
+#playr {
+  position: absolute;
+  background-color: white;
+  text-align: center;
+  border: 1px solid silver;
+  width:50%;
+}
+
+#playrhead {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  color: #fff;
+  border:0px solid silver;
+  
+  width:0%;
+}
+</style>
+<title>JFFM RADIO PLAYER</title>
+<meta name="description" content="My simple Webplayer by janikfrb on Github">
+<meta property="og:title" content="MY WEB PLAYER" />
+<meta property="og:description" content="Play music from [Artist] powerded by [name]" />
+<meta property="og:url" content="[URL] from your site" />
+<meta property="og:image" content="[URL] from your Image" />
+</head>
+<body background="Comming soon">
+  <!-- This section is only for the Laut.fm API. It is used for radio stations on Laut.fm. Please exclude only if it is needed! -->
+  <!---->
+  <!--
+<script type="text/javascript" src="//api.laut.fm/js_tools/lautfm_js_tools.0.9.1.js" ></script>
+-->
+<div id="playrhead">
+<div id="playr">
+<p style="color:white; background:linear-gradient(to right, red , yellow);;">MY WEB PLAYER - MOVE IT PER DRAG & DROP!</p>
+<button class="btn" id="pp"><img src="https://img.icons8.com/ios-filled/100/000000/play-button-circled--v3.png"/></button>
+<!--
+This is the Cover Image. Replace it with your own!
+<img src="https://jffmradio.files.wordpress.com/2020/11/cropped-3a6aa73876863716e87b92f24ea699e1.jpg" style="border:1px solid black;"/>
+-->
+
+<!-- this is not finished at this moment :(
+
+<div width="20" class="ds"><marquee width="20" direction="left" style="border:1px solid black;font-size:12px;" bgcolor="blue"; color="white"id="song" class="sng" loop="" scrolldelay="90" ></marquee></div><div id="ct"></div>
+<br><div class="bg" id="bg"><div class="pg" id="pg"></div> -->
+  
+<!-- This element is very important. It is the element that is responsible for the audio. Please replace the link with your own --> 
+<audio src="https://stream.laut.fm/jffm" id="player">
+  
+</div></div></div>
+<!-- This script is used to make the player moveable with the mouse-->
+<!-- \/ -->
+<script>
+dragElement(document.getElementById("playr"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "head")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "head").onmousedown = dragMouseDown;
+  } else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script>
+ <!-- This script is only for laut.fm api. Comment it out only if you want to link a radio station at laut.fm with the web player. 
+        <script>
+          var songcontainer = document.getElementById('song');
+ 
+          var show_song = function(song){
+              songcontainer.innerHTML = "Es läuft: <b>" + song['title'] +
+                "</b> - <b>" + song.artist["name"] + "</b> - JF FM";
+          }
+ 
+            
+            laut.fm.station('jffm').current_song(show_song, true);
+        </script>
+-->
+  
+  <!-- The Main Script -->
+        <script language="JavaScript" type="text/javascript">
+        dragElement(document.getElementById("player"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+        var button = document.getElementById("pp");
+var audio = document.getElementById("player");
+var pg = document.getElementById("pg");
+var div = document.getElementById("ct");
+var bg = document.getElementById("bg");
+var py = document.getElementById("playr");
+
+button.addEventListener("click", function(){
+  if(audio.paused){
+    //played:
+    audio.play();
+    button.innerHTML = "<img src='https://img.icons8.com/dotty/100/000000/circled-pause.png'/>";
+    setTimeout(function(){pg.style.animation = "";pg.innerHTML = ""}, 10)
+  } else {
+    audio.pause();
+    button.innerHTML = "<img src='https://img.icons8.com/dotty/100/000000/play-button-circled.png'/>";
+    pg.style.background = ''; 
+    pg.innerHTML = "Pause!"; 
+    pg.style.animation = "pg 15s infinite";
+
+  }
+});
+audio.ontimeupdate = function(){
+  pg.style.width = audio.currentTime / audio.duration * 100 + '%';
+
+}
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+  // true for mobile device
+  pg.style.visibility = "hidden";
+  bg.style.visibility = "hidden";
+  py.style.visibility = "hidden";
+  document.write("<p style='border:2px solid red;color:red;'>Es wurde ein Mobilgerät erkannt!<br>Du wirst nun auf Den Webplayer für Mobilgeräte geleitet!</p><meta http-equiv='refresh' content='2; index.mobile.php'>");
+}else{
+  // false for not mobile device
+  pg.style.visibility = "";
+  bg.style.visibility = "";
+  
+} 
+</script>
+
+  <!-- This is the footer! it is for Cookies or so on -->
+<div class="footer" id="foot">
+<p>This website is a public Github project by janikfrb.<br> Use the script only at your own risk.<br> All functions have been tested for functionality and worked properly before publishing.</p></div>
+
+  
+  <!-- This is the API-TEXT FOR LAUT.FM. USE ONLY WHEN YOU WAN'T TO USE IT! -->
+<!--
+  <div id="laut" class="footer1">
+<p>This website uses the public laut.fm API.<br><br>The laut.fm API is a service of LAUT AG and exposes general information about laut.fm, listings of stations and information about individual stations. When accessing the API, information of a general nature is automatically transmitted to laut.fm. This information includes, for example, the IP address, the type of web browser and operating system used, the domain name of your Internet service provider and the like. This is exclusively information that does not allow any conclusions to be drawn about your person. This information is technically necessary, for example, to correctly deliver the currently running title and is mandatory when using the Internet. Anonymous information of this kind is only stored by LAUT AG for a short period of time and, if necessary, statistically evaluated in order to optimize the API and the technology behind it.<br><br><br>.
+<button style="color:white;padding:20px 20px;background:orange; border:0px;font-size:20px;" id="btn">Accept</button></p>
+</div>
+<script>
+var ft = document.getElementById("foot");
+var lt = document.getElementById("laut");
+var lbt = document.getElementById("btn");
+var o = document.getElementById("o");
+lbt.addEventListener("click", function(){
+  lt.style.animation = "lt 5s";
+  lbt.disabled = "true";
+   setTimeout(function(){lt.style.animation = "";lt.style.visibility = "hidden"}, 5000);
+});
+o.addEventListener("click", function(){
+  lt.style.animation = "lt 5s reverse";
+  lt.style.visibility = "";
+  lbt.disabled = "";
+
+});
+</script>
+-->
+</body>
+</html>
+        
+
+
