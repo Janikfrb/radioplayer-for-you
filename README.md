@@ -8,9 +8,9 @@ A simple Web-Based Player with javascript and html. No PHP is required.
 
 V0.0.2
 
-[:x:] version released
+[🔴] version released
 
-[:x:] version finished
+[✅] version finished
 
 [✅] version in progress
 
