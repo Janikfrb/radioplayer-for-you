@@ -108,15 +108,15 @@ audio.ontimeupdate = function(){
   pg.style.width = audio.currentTime / audio.duration * 100 + '%';
 
 }
-/*if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
   // true for mobile device
   pg.style.visibility = "hidden";
   bg.style.visibility = "hidden";
   py.style.visibility = "hidden";
-  document.write("<p style='border:2px solid red;color:red;'>Es wurde ein Mobilgerät erkannt!<br>Du wirst nun auf Den Webplayer für Mobilgeräte geleitet!</p><meta http-equiv='refresh' content='2; index.mobile.php'>");
+  document.write("<p style='border:2px solid red;color:red;'>Mobile-Device Detected!<br>You will be Redirect to the Mobile Player</p><meta http-equiv='refresh' content='2; index.mobile.html'>");
 }else{
   // false for not mobile device
   pg.style.visibility = "";
   bg.style.visibility = "";
   
-} */
+}
