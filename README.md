@@ -12,7 +12,7 @@ V0.0.2
 
 [:x:] version finished
 
-[☑️] version in progress
+[✅] version in progress
 
 
 ---
