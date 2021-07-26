@@ -18,7 +18,7 @@ V0.0.2
 ---
 V0.0.1
 
-[:white_check_mark:] standart functions
+[:white_check_mark:] standard functions
 
 [:white_check_mark:] Full support
 
